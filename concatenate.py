@@ -40,7 +40,17 @@ class Conversion:
                                                                    "Esto puede tomar unos segundos, espera, por favor. ")
             peticionDescargaFFMPEG = requests.get("https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-essentials.zip",
                                                   allow_redirects=True)
-            open('ffmpeg.zip', 'wb').write(peticionDescargaFFMPEG.content)
+            try:
+                peticionDescargaFFMPEG = requests.get("https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-essentials.zip", allow_redirects=True)
+                open('ffmpeg.zip', 'wb').write(peticionDescargaFFMPEG.content)
+            except:
+                messagebox.showinfo("ERROR URL DESCARGA", "No se ha podido descargar desde Gyan.dev. "
+                                                                   "Se intentará la descarga desde una URL alternativa "
+                                                                   "Por favor, reporte este error como issue en "
+                                                                   "https://github.com/Nekuake/FFMPEG-friendly/issues ")
+                peticionDescargaFFMPEG = requests.get("https://github.com/FFmpeg/FFmpeg/releases/latest",
+                                                  allow_redirects=True)
+                open('ffmpeg.zip', 'wb').write(peticionDescargaFFMPEG.content)
             with zipfile.ZipFile("ffmpeg.zip", "r") as zip_ref:
                 zip_ref.extractall(os.getcwd() + "\\temp")
             shutil.copyfile((os.getcwd() + "\\temp\\ffmpeg-4.4-essentials_build\\bin\\ffmpeg.exe"),
