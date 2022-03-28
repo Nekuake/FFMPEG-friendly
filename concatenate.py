@@ -53,7 +53,7 @@ class Conversion:
                 open('ffmpeg.zip', 'wb').write(peticionDescargaFFMPEG.content)
             with zipfile.ZipFile("ffmpeg.zip", "r") as zip_ref:
                 zip_ref.extractall(os.getcwd() + "\\temp")
-            shutil.copyfile((os.getcwd() + "\\temp\\ffmpeg-4.4-essentials_build\\bin\\ffmpeg.exe"),
+            shutil.copyfile((os.getcwd() + "\\temp\\ffmpeg-5.0-essentials_build\\bin\\ffmpeg.exe"),
                             str(os.getcwd() + "\\ffmpeg.exe"))
             shutil.rmtree(os.getcwd() + "\\temp")
             os.remove("ffmpeg.zip")
