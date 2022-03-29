@@ -8,7 +8,6 @@ from pyunpack import Archive
 
 
 class Carpetas:
-    ruta = str()
 
     def __init__(self, reference_path):
         self.ruta = reference_path
